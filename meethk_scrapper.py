@@ -34,6 +34,11 @@ def getPostCategory(article):
             categories.append(tag)
     return categories
 
+def getPostLink(article):
+    h2_element = article.find("h2", class_="post-title")
+    a_element = h2_element.find("a")
+    return a_element["href"]
+
 def main():
     soup = getSoup(MEETHK_URL)
     articles = getAllArticles(soup)
@@ -44,4 +49,6 @@ def main():
         print("post datetime: " + str(post_datetime))
         categories = getPostCategory(article)
         print("categories: " + str(categories))
+        link = getPostLink(article)
+        print("link: " + str(link))
 main()
