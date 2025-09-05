@@ -27,6 +27,13 @@ def getPostDateFromArticle(article):
     time_element = p_element.find("time")
     return datetime.strptime(time_element["datetime"], "%Y-%m-%d %H:%M:%S")
 
+def getPostCategory(article):
+    categories = []
+    for tag in article["class"]:
+        if tag.startswith("category-"):
+            categories.append(tag)
+    return categories
+
 def main():
     soup = getSoup(MEETHK_URL)
     articles = getAllArticles(soup)
@@ -35,5 +42,6 @@ def main():
         print("title: " + str(title))
         post_datetime = getPostDateFromArticle(article)
         print("post datetime: " + str(post_datetime))
-    
+        categories = getPostCategory(article)
+        print("categories: " + str(categories))
 main()
