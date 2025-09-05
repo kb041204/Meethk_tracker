@@ -43,12 +43,17 @@ def getPostContentPureText(article):
     div_element = article.find("div", class_="entry")
     return div_element.get_text().strip()
 
+def getPostID(article):
+    return article["id"]
+
 def main():
     soup = getSoup(MEETHK_URL)
     articles = getAllArticles(soup)
     for article in articles:
         title = getTitleFromArticle(article)
         print("title: " + str(title))
+        post_id = getPostID(article)
+        print("post_id: " + str(post_id))
         post_datetime = getPostDateFromArticle(article)
         print("post datetime: " + str(post_datetime))
         categories = getPostCategory(article)
