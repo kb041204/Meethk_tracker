@@ -39,6 +39,10 @@ def getPostLink(article):
     a_element = h2_element.find("a")
     return a_element["href"]
 
+def getPostContentPureText(article):
+    div_element = article.find("div", class_="entry")
+    return div_element.get_text().strip()
+
 def main():
     soup = getSoup(MEETHK_URL)
     articles = getAllArticles(soup)
@@ -51,4 +55,7 @@ def main():
         print("categories: " + str(categories))
         link = getPostLink(article)
         print("link: " + str(link))
+        pure_text = getPostContentPureText(article)
+        print("pure_text: " + str(pure_text))
+        break
 main()
