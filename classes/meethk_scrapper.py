@@ -25,6 +25,6 @@ def getMeetHKArticleObjects():
     
     for (idx, raw_article) in enumerate(raw_articles):
         meetHKArticle = MeetHKArticle(raw_article)
-        print("idx[" + idx + "], post_id=" + str(meetHKArticle.postId) + ", timestamp=" + str(meetHKArticle.postDateTime))
+        print("idx[" + str(idx) + "], post_id=" + str(meetHKArticle.postId) + ", timestamp=" + str(meetHKArticle.postDateTime))
         articles.append(meetHKArticle)
     return articles
