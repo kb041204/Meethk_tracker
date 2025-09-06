@@ -57,6 +57,7 @@ async def checkMeetHK():
             channel_id = int(os.getenv('DISCORD_CHANNEL_ID'))
             channel = bot.get_channel(channel_id)
             if channel:
+                print(f"=========Sending message to channel")
                 await channel.send(embed=message)
             else:
                 print(f"Channel with ID {channel_id} not found")
