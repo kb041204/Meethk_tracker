@@ -3,7 +3,6 @@ from discord.ext import tasks
 import os
 from dotenv import load_dotenv
 from classes import meethk_scrapper
-import schedule
 import datetime
 
 # Load environment variables
