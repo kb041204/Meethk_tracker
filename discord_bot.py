@@ -28,7 +28,8 @@ def createDiscordEmbedMessage(article):
     latest_notice_title = article.title
     notice_content = trimText(article.postContentPureText, 10)
     notice_url = article.postLink
-    return discord.Embed(title=str(latest_notice_title), description=str(notice_content), url=str(notice_url), colour=discord.Color.teal())
+    image_url = article.imageUrl
+    return discord.Embed(title=str(latest_notice_title), description=str(notice_content), url=str(notice_url), colour=discord.Color.teal(), image=str(image_url))
 
 @bot.event
 async def on_ready():
