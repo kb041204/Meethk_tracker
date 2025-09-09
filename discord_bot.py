@@ -29,13 +29,31 @@ def createDiscordEmbedMessage(article):
     notice_content = trimText(article.postContentPureText, 10)
     notice_url = article.postLink
     image_url = article.imageUrl
-    return discord.Embed(title=str(latest_notice_title), description=str(notice_content), url=str(notice_url), colour=discord.Color.teal(), image=str(image_url))
+    
+    embed_msg = discord.Embed(title=str(latest_notice_title), description=str(notice_content), url=str(notice_url), colour=discord.Color.teal())
+    embed_msg.set_image(url=image_url)
+    return embed_msg
+
+async def testSendArticle():
+    articles_saved = meethk_scrapper.getMeetHKArticleObjects()
+    for article_retrieved in articles_saved:
+        message = createDiscordEmbedMessage(article_retrieved)
+        # Send message to specific channel
+        channel_id = int(os.getenv('DISCORD_CHANNEL_ID'))
+        channel = bot.get_channel(channel_id)
+        if channel:
+            print(f"=========Sending message to channel")
+            await channel.send(embed=message)
+        else:
+            print(f"Channel with ID {channel_id} not found")
+        return
 
 @bot.event
 async def on_ready():
     global articles_saved
     print(f'{bot.user} has connected to Discord!')
     articles_saved = meethk_scrapper.getMeetHKArticleObjects()
+    #await testSendArticle()
     checkMeetHK.start()
 
 @tasks.loop(minutes=10.0)
