@@ -8,3 +8,4 @@ class MeetHKArticle():
         self.postLink = meetHKArticleUtils.getPostLink(article)
         self.postContentPureText = meetHKArticleUtils.getPostContentPureText(article)
         self.postId = meetHKArticleUtils.getPostId(article)
+        self.imageUrl = meetHKArticleUtils.getLastImageUrl(article)

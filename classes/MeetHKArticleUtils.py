@@ -28,3 +28,8 @@ def getPostContentPureText(article):
 
 def getPostId(article):
     return article["id"]
+    
+def getLastImageUrl(article):
+    picture_element = article.find_all("picture")[-1]
+    first_img_element = picture_element.find("img")
+    return first_img_element["data-src"]
