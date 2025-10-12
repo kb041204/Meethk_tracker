@@ -30,6 +30,9 @@ def getPostId(article):
     return article["id"]
     
 def getLastImageUrl(article):
-    picture_element = article.find_all("picture")[-1]
+    picture_elements = article.find_all("picture")
+    if len(picture_elements) == 0:
+        return None
+    picture_element = picture_elements[-1]
     first_img_element = picture_element.find("img")
     return first_img_element["data-src"]
