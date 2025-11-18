@@ -80,8 +80,11 @@ async def checkMeetHK():
                 await channel.send(embed=message)
             else:
                 print(f"Channel with ID {channel_id} not found")
-            
-    articles_saved = articles_retrieved
+    
+    if len(articles_retrieved) != 0:
+        print(f"Updated articles_retrieved")
+        articles_saved = articles_retrieved
+        
     print(f'{str(datetime.datetime.now())} Check MeetHK ends')
 
 # Run the bot with your token
